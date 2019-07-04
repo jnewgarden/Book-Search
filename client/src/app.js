@@ -1,39 +1,24 @@
 import React, { Component } from "react";
-import { ToastContainer } from "react-toastify";
-import { Route, Redirect, Switch } from "react-router-dom";
-import Search from "./pages/search";
-import Saved from "./pages/save";
-import NotFound from "./pages/notFound";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
 import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Nav from "./components/Nav";
+import Header from "./components/Header";
+import Search from "./pages/Search"
+import Saved from "./pages/Saved"
 
 class App extends Component {
-    render() {
-        return (
-            <React.Fragment>
-                <ToastContainer />
-                <section className="hero-is-fullheight">
-                    <div className="head-head">
-                        <NavBar />
-                    </div>
-                    <div className="head-body">
-                        <Switch>
-                            <Route path="/search" component={Search} />
-                            <Route path="/saved" component={Saved} />
-                            <Route path="/not-found" component={NotFound} />
-                            <Redirect from="/" exact to="/search" />
-                            <Redirect to="/not-found" />
-                        </Switch>
-                    </div>
-                    <div className="head-foot">
-                        <Footer />
-                    </div>
-                </section>
-            </React.Fragment>
-        );
-    }
+  render() {
+    return (
+      <Router>
+        <Nav />
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Search}/>
+          <Route exact path="/saved" component={Saved}/>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
